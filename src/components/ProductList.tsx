@@ -1,13 +1,15 @@
 import ProductCard from './ProductCard';
-import productImage from '../assets/images/products/product-2.jpg';
+
+import { products } from '../assets/products.json';
+
+import { IProduct } from '../types/entities/product-entity';
 
 const ProductList = () => {
   return (
     <ul className="grid grid-cols-3 gap-[30px]">
-      <ProductCard image={productImage} name={'Piqué Biker Jacket'} price={6700} />
-      <ProductCard image={productImage} name={'Piqué Biker Jacket'} price={6700} />
-      <ProductCard image={productImage} name={'Piqué Biker Jacket'} price={6700} />
-      <ProductCard image={productImage} name={'Piqué Biker Jacket'} price={6700} />
+      {products.map((product: IProduct) => (
+        <ProductCard key={product.id} {...product} />
+      ))}
     </ul>
   );
 };
