@@ -1,7 +1,7 @@
-export interface IProduct {
+export type TProduct = {
   id: number;
-  name: string;
   type: string;
+  name: string;
   brand: string;
   price: number;
   availableSize: string[];
@@ -9,4 +9,4 @@ export interface IProduct {
   description: string;
   image: string;
   productCode: number;
-}
+};

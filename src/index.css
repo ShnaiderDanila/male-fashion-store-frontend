@@ -4,23 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
-  .container {
-    @apply max-w-[1170px] m-auto px-[15px];
-  }
-
-  .primary-text {
-    @apply text-base text-[#3d3d3d];
-  }
-  .title {
-    @apply text-[48px] font-bold leading-[58px];
-  }
-
-  .navbar-link {
-    @apply text-[18px] font-semibold;
-  }
-  .navbar-span {
-    @apply block cursor-pointer m-auto max-w-0 opacity-0 
-    group-hover:max-w-full h-0.5 bg-red transition-all duration-500
-    group-hover:opacity-100;
+  .hover-link {
+    @apply opacity-100 transition-all duration-200 hover:opacity-50;
   }
 }

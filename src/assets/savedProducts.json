@@ -1,0 +1,16 @@
+{
+  "savedProducts": [
+    {
+      "id": 1,
+      "type": "Одежда",
+      "name": "Толстовка Exeter Loopback Hoodie",
+      "brand": "Timberland",
+      "price": 12990,
+      "availableSize": ["S", "M", "L", "XL", "XXL"],
+      "color": "Синий",
+      "description": "Материал: 82% хлопок, 18% полиэстер. Страна-производитель: Иордания",
+      "image": "/products-img/timberland-blue-hoodie.webp",
+      "productCode": 481832
+    }
+  ]
+}
