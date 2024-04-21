@@ -7,6 +7,7 @@ const BlogPage = lazy(() => import('../../pages/BlogPage/BlogPage'));
 const ProductPage = lazy(() => import('../../pages/ProductPage/ProductPage'));
 const WishlistPage = lazy(() => import('../../pages/WishlistPage/WishlistPage'));
 const CartPage = lazy(() => import('../../pages/CartPage/CartPage'));
+const CheckoutPage = lazy(() => import('../../pages/CheckoutPage/CheckoutPage'));
 const ProfilePage = lazy(() => import('../../pages/ProfilePage/ProfilePage'));
 const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage'));
@@ -22,6 +23,7 @@ import { useAppSelector } from '../../hooks/redux';
 
 const Router: FC = () => {
   const currentUser = useAppSelector((state: RootState) => state.userReducer.currentUser);
+  const cartProducts = useAppSelector((state: RootState) => state.cartReducer.products);
 
   return (
     <>
@@ -39,6 +41,12 @@ const Router: FC = () => {
           {/* protected routes */}
           <Route element={<ProtectedRoute currentUser={currentUser} />}>
             <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/checkout"
+              element={
+                cartProducts && cartProducts.length ? <CheckoutPage /> : <Navigate to="/cart" />
+              }
+            />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/wishlist" element={<WishlistPage />} />
           </Route>

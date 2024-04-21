@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TSignInSchema, signInSchema } from '../../types/schemas/signin-schema';
 
 import FormInput from '../ui/FormInput/FormInput';
-import Button from '../ui/Button/Button';
+import CustomButton from '../ui/CustomButton/CustomButton';
 import { FC, useState } from 'react';
 import HiddenPasswordButton from '../ui/HiddenPasswordButton/HiddenPasswordButton';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { authAPI } from '../../utils/api/services/AuthService';
 import { toast } from 'react-toastify';
 import { TErrorResponce } from '../../types/error-responce';
 
-import { userSignIn } from '../../store/slices/UserSlice';
+import { updateUser } from '../../store/slices/userSlice';
 import { useAppDispatch } from '../../hooks/redux';
 
 const SignInForm: FC = () => {
@@ -21,7 +21,10 @@ const SignInForm: FC = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [signIn] = authAPI.useLoginMutation();
+
+  const [signIn] = authAPI.useLoginMutation({
+    fixedCacheKey: 'shared-update-post',
+  });
 
   const {
     register,
@@ -37,15 +40,19 @@ const SignInForm: FC = () => {
   const onSubmit: SubmitHandler<TSignInSchema> = async (data) => {
     await signIn(data)
       .unwrap()
-      .then((data) => {
-        localStorage.setItem('token', data.token);
-        dispatch(userSignIn(data.user));
+      .then(({ user, token }) => {
+        localStorage.setItem('token', token);
+        dispatch(updateUser(user));
         reset();
         navigate('/', { replace: true });
         toast.success('Вход выполнен успешно!');
       })
       .catch((error: TErrorResponce) => {
-        toast.error(error.data.message);
+        if (error.data) {
+          toast.error(error.data.message);
+        } else {
+          toast.error('Ошибка сервера! Пожалуйста, повторите попытку позже.');
+        }
       });
   };
 
@@ -75,9 +82,9 @@ const SignInForm: FC = () => {
         </FormInput>
       </fieldset>
       <p className="mb-3">* - обязательные поля для заполнения</p>
-      <Button disabled={isSubmitting || !isDirty || !isValid}>
+      <CustomButton disabled={isSubmitting || !isDirty || !isValid}>
         <span>Войти</span>
-      </Button>
+      </CustomButton>
     </form>
   );
 };

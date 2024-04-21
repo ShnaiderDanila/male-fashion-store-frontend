@@ -1,3 +1,4 @@
+import { TOrder } from './order-entity';
 import { TProduct } from './product-entity';
 
 export type TUser = {
@@ -8,6 +9,7 @@ export type TUser = {
   password: string;
   address: string;
   wishlist: TProduct[];
+  orders: TOrder[];
   createdAt: string;
   updatedAt: string;
 };

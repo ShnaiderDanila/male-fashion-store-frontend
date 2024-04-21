@@ -17,10 +17,12 @@ const ProductPage = () => {
   return (
     <>
       <Preloader isLoading={isLoading} />
-      <PageWrapper>
-        <Breadcrumb currentEndpointName={product?.name} />
-        <ProductPageComponent currentProduct={product} />
-      </PageWrapper>
+      {product && (
+        <PageWrapper>
+          <Breadcrumb currentEndpointName={product.name} />
+          <ProductPageComponent currentProduct={product} />
+        </PageWrapper>
+      )}
     </>
   );
 };

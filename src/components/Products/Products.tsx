@@ -1,99 +1,77 @@
-import { ChangeEvent, FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
-import ProductsSort from './ProductsSort/ProductsSort';
-import ProductsFilter from './ProductsFilter/ProductsFilter';
-import ProductList from './ProductsList/ProductList';
-import ProductsSearchInput from './ProductsSearchInput/ProductsSearchInput';
-import SortMenuMobile from '../SortMenuMobile/SortMenuMobile';
-import FilterMenuMobile from '../FilterMenuMobile/FilterMenuMobile';
-import Container from '../ui/Container/Container';
-
-import { products } from '../../assets/products.json';
 import { sortProducts } from '../../utils/functions/sortProducts';
 import { filterBySearchQuery } from '../../utils/functions/filterBySearchQuery';
 import { useDebounce } from '../../hooks/useDebounce';
 import { TProduct } from '../../types/entities/product-entity';
+import { useAppSelector } from '../../hooks/redux';
+import { RootState } from '../../store/store';
+import { filterProducts } from '../../utils/functions/filterProducts.ts';
 
-const categories = [
-  {
-    title: 'Категории',
-    options: [...new Set(products.map((product) => product.type))],
-  },
-  {
-    title: 'Бренды',
-    options: [...new Set(products.map((product) => product.brand))],
-  },
-  {
-    title: 'Размер',
-    options: [...new Set(products.map((product) => product.availableSize).flat())],
-  },
-  {
-    title: 'Цвет',
-    options: [...new Set(products.map((product) => product.color))],
-  },
-];
+import ProductsSort from './ProductsSort/ProductsSort';
+import ProductList from './ProductsList/ProductList';
+import ProductsSearchInput from './ProductsSearchInput/ProductsSearchInput';
+import Container from '../ui/Container/Container';
+import SortMenuMobile from '../SortMenuMobile/SortMenuMobile';
+import ProductsFilter from './ProductsFilter/ProductsFilter';
+import ProductsFilterMobile from './ProductsFilterMobile/ProductsFilterMobile';
 
 interface ProductsProps {
-  products: TProduct[] | undefined;
+  products: TProduct[];
 }
 
 const Products: FC<ProductsProps> = ({ products }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const debounced = useDebounce(searchQuery);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [selectedSortItem, setSelectedSortItem] = useState('По умолчанию');
 
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const debounced = useDebounce(searchQuery);
-
-  const sortedProducts = useMemo(
-    () => sortProducts(selectedSortItem, products),
-    [selectedSortItem, products],
-  );
-
-  const sortedAndSearchedProducts = useMemo(
-    () => filterBySearchQuery(debounced, sortedProducts),
-    [debounced, sortedProducts],
+  const selectedFilterOptions = useAppSelector(
+    (state: RootState) => state.filterReducer.selectedFilterOptions,
   );
 
   const selectSort = (sortItem: string) => {
     setSelectedSortItem(sortItem);
   };
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const sortedProducts = useMemo(
+    () => sortProducts(selectedSortItem, products),
+    [selectedSortItem, products],
+  );
 
-    if (e.target.checked) {
-      setSelectedOptions([...selectedOptions, value]);
-    } else {
-      setSelectedOptions(selectedOptions.filter((item) => item !== value));
-    }
-  };
+  const sortedAndFilteredProducts = useMemo(
+    () => filterProducts(sortedProducts, selectedFilterOptions),
+    [sortedProducts, selectedFilterOptions],
+  );
+
+  const searchedProducts = useMemo(() => {
+    setCurrentPage(1);
+    return filterBySearchQuery(debounced, sortedAndFilteredProducts);
+  }, [debounced, sortedAndFilteredProducts, setCurrentPage]);
 
   return (
-    <section className="py-24">
+    <section className="pb-24 pt-20 lg:pt-10">
       <Container>
-        <div className="flex flex-col gap-5 fixed z-[40] bg-white w-full top-20 left-0 lg:mb-16 lg:static pt-5 ">
-          <ProductsSearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <div className="flex flex-col gap-5 fixed z-[40] bg-white w-full top-20 left-0 lg:mb-12 lg:static pt-5 ">
+          <ProductsSearchInput
+            searchQuery={debounced}
+            setSearchQuery={setSearchQuery}
+            sortedAndSearchedProducts={sortedAndFilteredProducts}
+          />
           <ProductsSort selectedSortItem={selectedSortItem} selectSort={selectSort} />
           <div className="flex justify-around lg:hidden">
             <SortMenuMobile selectedSortItem={selectedSortItem} selectSort={selectSort} />
-            <FilterMenuMobile
-              categories={categories}
-              selectedOptions={selectedOptions}
-              handleCheckboxChange={handleCheckboxChange}
-            />
+            <ProductsFilterMobile />
           </div>
         </div>
-        <div className="flex justify-between gap-10 pt-20 lg:pt-0">
-          <ProductsFilter
-            categories={categories}
-            selectedOptions={selectedOptions}
-            handleCheckboxChange={handleCheckboxChange}
+        <div className="flex gap-10 pt-20 lg:pt-0">
+          <ProductsFilter />
+          <ProductList
+            products={searchedProducts}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
-          <div>
-            <ProductList products={sortedAndSearchedProducts} />
-          </div>
         </div>
       </Container>
     </section>

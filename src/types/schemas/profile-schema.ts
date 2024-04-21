@@ -14,15 +14,16 @@ export const profileSchema = z.object({
     .optional(),
   phoneNumber: z
     .string()
-    .regex(phoneRegex, 'Неверный формат номера телефона')
+    .regex(phoneRegex, 'Некорректный формат номера телефона')
     .min(11, 'Номер телефона должен состоять из 11 цифр')
+    .max(11, 'Номер телефона должен состоять из 11 цифр')
     .optional(),
   email: z
     .string()
     .min(1, 'Пожалуйста, заполните обязательное поле')
-    .email('Неверный формат электронной почты')
+    .email('Некорректный формат электронной почты')
     .optional(),
-  address: z.string().optional(),
+  address: z.string({ required_error: 'Пожалуйста, выберите адрес из выпадющего списка' }),
 });
 
 export type TProfileSchema = z.infer<typeof profileSchema>;

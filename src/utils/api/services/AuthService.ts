@@ -18,7 +18,6 @@ export const authAPI = api.injectEndpoints({
         method: 'POST',
         body: user,
       }),
-      invalidatesTags: ['User'],
     }),
   }),
 });

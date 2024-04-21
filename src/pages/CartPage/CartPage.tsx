@@ -1,18 +1,19 @@
-import CartForm from '../../components/Cart/CartForm/CartForm';
-import CartItemList from '../../components/Cart/CartItemList/CartItemList';
+import Cart from '../../components/Cart/Cart';
+import EmptyCart from '../../components/Cart/EmptyCart/EmptyCart';
 import Container from '../../components/ui/Container/Container';
 import PageWrapper from '../../components/ui/PageWrapper/PageWrapper';
+import { useAppSelector } from '../../hooks/redux';
+import { RootState } from '../../store/store';
 
 const CartPage = () => {
+  const cartProducts = useAppSelector((state: RootState) => state.cartReducer.products);
+
   return (
     <PageWrapper>
       <section className="pt-10 pb-36 flex flex-col items-center justify-center lg:block">
         <Container>
-          <h2 className="text-center text-2xl mb-10 font-semibold">Оформление заказа</h2>
-          <div className="flex flex-col lg:flex-row justify-between gap-20">
-            <CartForm />
-            <CartItemList />
-          </div>
+          <h2 className="text-center text-2xl mb-3 lg:mb-4 font-semibold">Корзина</h2>
+          {cartProducts.length ? <Cart /> : <EmptyCart />}
         </Container>
       </section>
     </PageWrapper>

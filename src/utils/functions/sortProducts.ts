@@ -15,7 +15,7 @@ export const sortProducts = (sortItem: string, products: TProduct[] | undefined)
   }
 
   if (sortItem === SortItems.alphabet) {
-    return [...products].sort((a: TProduct, b: TProduct) => a.brand.localeCompare(b.brand));
+    return [...products].sort((a: TProduct, b: TProduct) => a.name.localeCompare(b.name));
   }
 
   return products;

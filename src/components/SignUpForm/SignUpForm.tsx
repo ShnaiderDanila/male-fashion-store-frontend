@@ -5,14 +5,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TSignUpSchema, signUpSchema } from '../../types/schemas/signup-schema';
 
 import FormInput from '../ui/FormInput/FormInput';
-import Button from '../ui/Button/Button';
+import CustomButton from '../ui/CustomButton/CustomButton';
 import { FC, useState } from 'react';
 import HiddenPasswordButton from '../ui/HiddenPasswordButton/HiddenPasswordButton';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '../../hooks/redux';
-import { userSignIn } from '../../store/slices/UserSlice';
+import { updateUser } from '../../store/slices/userSlice';
 import { authAPI } from '../../utils/api/services/AuthService';
 import { TErrorResponce } from '../../types/error-responce';
 
@@ -46,12 +46,16 @@ const SignUpForm: FC = () => {
       .then((data) => {
         reset();
         localStorage.setItem('token', data.token);
-        dispatch(userSignIn(data.user));
+        dispatch(updateUser(data.user));
         navigate('/', { replace: true });
         toast.success('Вы успешно зарегистрировались!');
       })
       .catch((error: TErrorResponce) => {
-        toast.error(error.data.message);
+        if (error.data) {
+          toast.error(error.data.message);
+        } else {
+          toast.error('Ошибка сервера! Пожалуйста, повторите попытку позже.');
+        }
       });
   };
 
@@ -130,9 +134,9 @@ const SignUpForm: FC = () => {
         </FormInput>
       </fieldset>
       <p className="mb-3">* - обязательные поля для заполнения</p>
-      <Button disabled={isSubmitting || !isDirty || !isValid}>
+      <CustomButton disabled={isSubmitting || !isDirty || !isValid}>
         <span>Зарегистрироваться</span>
-      </Button>
+      </CustomButton>
     </form>
   );
 };

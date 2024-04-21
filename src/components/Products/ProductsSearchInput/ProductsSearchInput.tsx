@@ -1,82 +1,70 @@
 import { FC } from 'react';
-import { GrSearch } from 'react-icons/gr';
-import { IoMdCloseCircle } from 'react-icons/io';
-// import Autocomplete from '@mui/material/Autocomplete';
-// import { InputAdornment, TextField } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
+import { TProduct } from '../../../types/entities/product-entity';
 
 interface ProductsSearchInputProps {
   searchQuery: string;
   setSearchQuery: (value: string) => void;
+  sortedAndSearchedProducts: TProduct[];
 }
 
-const ProductsSearchInput: FC<ProductsSearchInputProps> = ({ searchQuery, setSearchQuery }) => {
+const ProductsSearchInput: FC<ProductsSearchInputProps> = ({
+  searchQuery,
+  setSearchQuery,
+  sortedAndSearchedProducts,
+}) => {
+  const TextFieldSx = {
+    position: 'relative',
+    '& .MuiOutlinedInput-root': {
+      color: '#111111',
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#b7b7b7',
+        borderWidth: '1px',
+      },
+      '&.Mui-focused': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: '#111111',
+          borderWidth: '1px',
+        },
+      },
+    },
+    '& .MuiInputLabel-outlined': {
+      color: '#b7b7b7',
+      '&.Mui-focused': {
+        color: '#111111',
+        fontWeight: 'bold',
+      },
+    },
+  };
+
   return (
-    <>
-      <div className="w-10/12 m-auto relative lg:w-full">
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          type="text"
-          placeholder="Искать в каталоге"
-          className="w-full text-primary-light px-10 border border-gray h-11 outline-gray rounded-md shadow-sm"
-        />
-        <span className="absolute top-3.5 left-3">
-          <GrSearch className="text-primary-light" />
-        </span>
-        <button className="absolute top-0 right-0 p-3.5" onClick={() => setSearchQuery('')}>
-          <IoMdCloseCircle className="text-primary-light" />
-        </button>
-      </div>
-      {/* <Autocomplete
+    <div className="max-w-[95%] w-full mx-auto lg:max-w-full">
+      <Autocomplete
         freeSolo
         id="free-solo-2-demo"
         disableClearable
-        options={['123', '312'].map((option) => option)}
+        options={sortedAndSearchedProducts.map((product) => product.name)}
         sx={{
           position: 'relative',
         }}
+        value={searchQuery}
+        onChange={(_e, newValue: string) => setSearchQuery(newValue)}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="outlined"
             type="text"
-            sx={{
-              position: 'relative',
-              '& .MuiOutlinedInput-root': {
-                color: '#000',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#2e2e2e',
-                  borderWidth: '2px',
-                },
-                '&.Mui-focused': {
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'secondary.main',
-                    borderWidth: '3px',
-                  },
-                },
-                '&:hover:not(.Mui-focused)': {
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#ccc',
-                  },
-                },
-              },
-              '& .MuiInputLabel-outlined': {
-                color: 'gray',
-                fontWeight: 'bold',
-                '&.Mui-focused': {
-                  color: 'gray',
-                  fontWeight: 'bold',
-                },
-              },
-            }}
+            sx={TextFieldSx}
             label="Поиск"
             InputProps={{
               ...params.InputProps,
             }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         )}
-      /> */}
-    </>
+      />
+    </div>
   );
 };
 

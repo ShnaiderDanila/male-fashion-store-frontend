@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import { SortItems } from '../../../utils/enums/sortItems';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 interface ProductSortProps {
   selectedSortItem: string;
@@ -11,13 +12,17 @@ interface ProductSortProps {
 const ProductsSort: FC<ProductSortProps> = ({ selectedSortItem, selectSort }) => {
   const [sortPopupIsOpen, setSortPopupIsOpen] = useState(false);
 
+  const ref = useOutsideClick(() => {
+    setSortPopupIsOpen(false);
+  });
+
   const selectSortItem = (sortItem: string) => {
     selectSort(sortItem);
     setSortPopupIsOpen(false);
   };
 
   return (
-    <div className="hidden lg:flex mt-0 relative self-end">
+    <div className="hidden lg:flex mt-0 relative self-end" ref={ref}>
       <span className="flex gap-2">
         Сортировка:
         <span

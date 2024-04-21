@@ -1,11 +1,13 @@
-import { modalReducer } from './slices/ModalSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from './slices/UserSlice';
+import userReducer from './slices/userSlice';
+import cartReducer from './slices/cartSlice';
+import filterReducer from './slices/filterSlice';
 import { api } from '../utils/api/base.api';
 
 const rootReducer = combineReducers({
   userReducer,
-  modalReducer,
+  cartReducer,
+  filterReducer,
   [api.reducerPath]: api.reducer,
 });
 

@@ -5,7 +5,7 @@ const Comments = () => {
   return (
     <section className="py-16 bg-[#f3f2ee] sm:py-24">
       <Container>
-        <div className="gap-8 lg:flex lg:items-center">
+        <div data-aos="zoom-in" className="gap-8 lg:flex lg:items-center">
           <ul className="w-full flex flex-wrap justify-center">
             {socialMediaImages.map((item) => (
               <li key={item} className="sm:w-[33.33%]">

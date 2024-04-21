@@ -4,15 +4,15 @@ import banner3 from '../../assets/images/banner/banner-3.webp';
 
 export const banners = {
   clothes: {
-    title: 'Одежда Коллекция 2024',
+    title: 'Одежда',
     image: banner1,
   },
   accessories: {
-    title: 'Аксессуары 2024',
+    title: 'Аксессуары',
     image: banner2,
   },
   shoes: {
-    title: 'Обувь Весна 2024',
+    title: 'Обувь',
     image: banner3,
   },
 };

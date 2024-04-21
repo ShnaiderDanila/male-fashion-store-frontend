@@ -2,25 +2,37 @@ import { useCallback, useEffect, useState } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 import { userAPI } from '../utils/api/services/UserService';
 
-import { userSignIn } from '../store/slices/UserSlice';
+import { updateUser } from '../store/slices/userSlice';
 import { useAppDispatch } from '../hooks/redux';
 
 import Preloader from './ui/Preloader/Preloader';
 import Router from './Router/Router';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { setCartState } from '../store/slices/cartSlice';
+import { getLocalStorageItem } from '../utils/functions/localStorageItem';
+
+import aos from 'aos';
+import 'aos/dist/aos.css';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [getCurrentUser] = userAPI.useLazyGetCurrentUserQuery();
   const dispatch = useAppDispatch();
 
+  // aos animation library
+  useEffect(() => {
+    aos.init({
+      duration: 500,
+    });
+  }, []);
+
   const getUser = useCallback(async () => {
     if (localStorage.getItem('token')) {
       try {
         const user = await getCurrentUser();
         if (user.data) {
-          dispatch(userSignIn(user.data));
+          dispatch(updateUser(user.data));
         }
       } catch (error) {
         console.log(error);
@@ -29,6 +41,10 @@ const App = () => {
       }
     } else {
       setIsLoading(false);
+    }
+
+    if (localStorage.getItem('cart')) {
+      dispatch(setCartState(getLocalStorageItem('cart')));
     }
   }, [dispatch, getCurrentUser]);
 
@@ -46,13 +62,23 @@ const App = () => {
       style={{ wordBreak: 'break-word' }}
     >
       <Router />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        theme="light"
-        pauseOnHover={false}
-        transition={Slide}
-      />
+      <div>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          theme="light"
+          pauseOnHover={false}
+          transition={Slide}
+          newestOnTop={true}
+          rtl={false}
+          draggable
+          style={{
+            paddingLeft: '5px',
+            paddingRight: '20px',
+            textAlign: 'center',
+          }}
+        />
+      </div>
     </div>
   );
 };

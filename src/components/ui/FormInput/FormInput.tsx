@@ -10,13 +10,16 @@ type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {
   clearField?: () => void;
 };
 
+const defaultClassName =
+  'w-full text-primary pl-3 pr-10 py-2 border border-gray outline-primary rounded-sm flex-1';
+
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(function Comp(
   {
     labelTitle,
     inputId,
     error,
     clearField,
-    className = 'w-full text-primary pl-3 pr-10 py-2 border border-gray outline-primary rounded-sm flex-1',
+    className = defaultClassName,
     children,
     ...inputParams
   },
@@ -29,6 +32,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(function Comp(
       </label>
       <input id={inputId} ref={ref} {...inputParams} className={className} />
       <p className="text-red text-sm">{error}</p>
+
       {clearField && (
         <button
           type="button"
@@ -38,6 +42,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(function Comp(
           <IoMdCloseCircle className="text-primary-light" />
         </button>
       )}
+
       {children}
     </div>
   );

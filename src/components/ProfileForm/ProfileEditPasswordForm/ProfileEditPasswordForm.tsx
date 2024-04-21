@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FC, useState } from 'react';
 
 import FormInput from '../../ui/FormInput/FormInput';
-import Button from '../../ui/Button/Button';
+import CustomButton from '../../ui/CustomButton/CustomButton';
 import HiddenPasswordButton from '../../ui/HiddenPasswordButton/HiddenPasswordButton';
 
 import {
@@ -43,7 +43,11 @@ const ProfileEditPasswordForm: FC<ProfileEditPasswordFormProps> = ({ toggleEditP
         toast.success('Пароль успешно изменен!');
       })
       .catch((error: TErrorResponce) => {
-        toast.error(error.data.message);
+        if (error.data) {
+          toast.error(error.data.message);
+        } else {
+          toast.error('Ошибка сервера! Пожалуйста, повторите попытку позже.');
+        }
       });
   };
 
@@ -85,9 +89,9 @@ const ProfileEditPasswordForm: FC<ProfileEditPasswordFormProps> = ({ toggleEditP
         </FormInput>
       </fieldset>
       <p className="mb-3">* - обязательные поля для заполнения</p>
-      <Button disabled={isSubmitting || !isDirty || !isValid}>
+      <CustomButton disabled={isSubmitting || !isDirty || !isValid}>
         <span>Изменить</span>
-      </Button>
+      </CustomButton>
     </form>
   );
 };
