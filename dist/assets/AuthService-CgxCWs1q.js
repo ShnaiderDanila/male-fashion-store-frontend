@@ -1,0 +1,1 @@
+import{z as i}from"./index-C0iluDBm.js";const a=i.injectEndpoints({endpoints:o=>({registration:o.mutation({query:t=>({url:"/auth/registration",method:"POST",body:t})}),login:o.mutation({query:t=>({url:"/auth/login",method:"POST",body:t})})})});export{a};
