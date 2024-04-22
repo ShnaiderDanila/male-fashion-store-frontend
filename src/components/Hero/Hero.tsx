@@ -4,15 +4,18 @@ import Container from '../ui/Container/Container';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useCallback, useEffect, useState } from 'react';
 
+import hero1 from '../../assets/images/hero/hero-1.jpg';
+import hero2 from '../../assets/images/hero/hero-2.jpg';
+
 const Hero = () => {
   const slides = [
     {
-      image: './src/assets/images/hero/hero-1.jpg',
+      image: hero1,
       subTitle: 'Весенняя коллекция',
       text: 'Специализированный интернет-магазин, продающий мужскую одежду, изготовленную с соблюдением этических норм и неизменным стремлением к исключительному качеству.',
     },
     {
-      image: './src/assets/images/hero/hero-2.jpg',
+      image: hero2,
       subTitle: 'Летняя коллекция',
       text: 'Откройте новые горизонты с нашей коллекцией. Идеальные силуэты и элегантный дизайн - все, что вам нужно для уверенного образа на каждый день.',
     },
