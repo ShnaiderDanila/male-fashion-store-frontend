@@ -3,6 +3,7 @@ import { RootState } from '../../store/store';
 import Order from './Order/Order';
 import { useState } from 'react';
 import CustomButton from '../ui/CustomButton/CustomButton';
+import { TOrder } from '../../types/entities/order-entity';
 
 const OrdersList = () => {
   const currentUser = useAppSelector((state: RootState) => state.userReducer.currentUser);
@@ -22,7 +23,7 @@ const OrdersList = () => {
         {ordersFromNewToOld &&
           ordersFromNewToOld
             .slice(0, loadedOders)
-            .map((order) => <Order key={order.id} order={order} />)}
+            .map((order: TOrder) => <Order key={order.id} order={order} />)}
       </ul>
       <div className="mt-5">
         {ordersFromNewToOld && loadedOders < ordersFromNewToOld.length && (
