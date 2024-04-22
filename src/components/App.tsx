@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setCartState } from '../store/slices/cartSlice';
 import { getLocalStorageItem } from '../utils/functions/localStorageItem';
 
-import aos from 'aos';
+import * as Aos from 'aos';
 import 'aos/dist/aos.css';
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
 
   // aos animation library
   useEffect(() => {
-    aos.init({
+    Aos.init({
       duration: 500,
     });
   }, []);
