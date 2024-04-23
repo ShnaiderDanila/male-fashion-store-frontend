@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '../../hooks/redux';
-import { updateUser } from '../../store/slices/userSlice';
+import { updateUser } from 'src/store/slices/userSlice';
 import { authAPI } from '../../utils/api/services/AuthService';
 import { TErrorResponce } from '../../types/error-responce';
 

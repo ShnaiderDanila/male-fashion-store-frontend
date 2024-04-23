@@ -10,7 +10,7 @@ import HeaderMainLinks from './HeaderMainLinks/HeaderMainLinks';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { RootState } from '../../store/store';
-import { removeUser } from '../../store/slices/userSlice';
+import { removeUser } from 'src/store/slices/userSlice';
 
 import logo from '../../assets/images/logo.png';
 import { removeAllProducts } from '../../store/slices/cartSlice';

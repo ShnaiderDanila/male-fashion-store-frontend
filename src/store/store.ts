@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from './slices/userSlice';
+import userReducer from 'src/store/slices/userSlice';
 import cartReducer from './slices/cartSlice';
 import filterReducer from './slices/filterSlice';
 import { api } from '../utils/api/base.api';

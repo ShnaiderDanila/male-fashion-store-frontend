@@ -22,7 +22,7 @@ import { FaCheck } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import GoogleAdressInput from '../ui/GoogleAddressInput/GoogleAdressInput';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../store/slices/userSlice';
+import { updateUser } from 'src/store/slices/userSlice';
 
 const ProfileForm = () => {
   const currentUser = useAppSelector((state: RootState) => state.userReducer.currentUser);

@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { removeAllProducts } from '../../store/slices/cartSlice';
 import { TErrorResponce } from '../../types/error-responce';
-import { updateUser } from '../../store/slices/userSlice';
+import { updateUser } from 'src/store/slices/userSlice';
 
 const CheckoutForm = () => {
   const currentUser = useAppSelector((state: RootState) => state.userReducer.currentUser);

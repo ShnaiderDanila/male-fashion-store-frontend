@@ -13,7 +13,7 @@ import { authAPI } from '../../utils/api/services/AuthService';
 import { toast } from 'react-toastify';
 import { TErrorResponce } from '../../types/error-responce';
 
-import { updateUser } from '../../store/slices/userSlice';
+import { updateUser } from 'src/store/slices/userSlice';
 import { useAppDispatch } from '../../hooks/redux';
 
 const SignInForm: FC = () => {

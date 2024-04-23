@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 import { userAPI } from '../utils/api/services/UserService';
 
-import { updateUser } from '../store/slices/userSlice.ts';
+import { updateUser } from 'src/store/slices/userSlice';
 import { useAppDispatch } from '../hooks/redux';
 
 import Preloader from './ui/Preloader/Preloader';

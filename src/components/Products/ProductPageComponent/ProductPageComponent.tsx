@@ -18,7 +18,7 @@ import { TErrorResponce } from '../../../types/error-responce';
 import { checkLikedProduct } from '../../../utils/functions/checkLikedProduct';
 import { findExistProduct } from '../../../utils/functions/findExistProduct';
 import { useNavigate } from 'react-router-dom';
-import { updateUser } from '../../../store/slices/userSlice';
+import { updateUser } from 'src/store/slices/userSlice';
 
 interface ProductPageComponentProps {
   currentProduct: TProduct;
