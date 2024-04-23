@@ -54,7 +54,7 @@ const Cart = () => {
           gap="0"
         >
           <span>Перейти к оформлению</span>
-          <span>{formatCost(7000)}</span>
+          <span>{formatCost(totalPrice)}</span>
         </CustomButton>
       </div>
     </div>
