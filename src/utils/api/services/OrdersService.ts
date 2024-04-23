@@ -7,6 +7,9 @@ export const ordersAPI = api.injectEndpoints({
     createOrder: builder.mutation<TUser, Pick<TOrder, 'products' | 'address' | 'deliveryMethod'>>({
       query: (order: Pick<TOrder, 'products' | 'address' | 'deliveryMethod'>) => ({
         url: `/orders`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
         method: 'POST',
         body: order,
       }),

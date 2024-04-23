@@ -22,7 +22,6 @@ export const productsAPI = api.injectEndpoints({
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }),
-      invalidatesTags: ['Wishlist'],
     }),
   }),
 });

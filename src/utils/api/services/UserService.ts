@@ -1,13 +1,15 @@
 import { TProfileSchema } from '../../../types/schemas/profile-schema';
 import { TUser } from '../../../types/entities/user-entity';
 import { api } from '../base.api';
-import { TProduct } from '../../../types/entities/product-entity';
 
 export const userAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getCurrentUser: builder.query<TUser, void>({
       query: () => ({
         url: `/users/current`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       }),
     }),
 
@@ -15,6 +17,9 @@ export const userAPI = api.injectEndpoints({
       query: (user: TProfileSchema) => ({
         url: `/users/update`,
         method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
         body: user,
       }),
     }),
@@ -22,17 +27,11 @@ export const userAPI = api.injectEndpoints({
       query: (password: string) => ({
         url: `/users/update/password`,
         method: 'PUT',
-        body: { password },
-      }),
-    }),
-    getCurrentUserWishlist: builder.query<TProduct[], void>({
-      query: () => ({
-        url: `/users/current/wishlist`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
+        body: { password },
       }),
-      providesTags: ['Wishlist'],
     }),
   }),
 });

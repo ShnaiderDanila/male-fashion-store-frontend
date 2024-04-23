@@ -16,9 +16,9 @@ import { productsAPI } from '../../../utils/api/services/ProductsService';
 import { toast } from 'react-toastify';
 import { TErrorResponce } from '../../../types/error-responce';
 import { checkLikedProduct } from '../../../utils/functions/checkLikedProduct';
-import { userAPI } from '../../../utils/api/services/UserService';
 import { findExistProduct } from '../../../utils/functions/findExistProduct';
 import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../../store/slices/userSlice';
 
 interface ProductPageComponentProps {
   currentProduct: TProduct;
@@ -42,9 +42,7 @@ const ProductPageComponent: FC<ProductPageComponentProps> = ({ currentProduct })
     return findExistProduct(state.cartReducer, productForCart);
   });
 
-  const { data: wishlist } = userAPI.useGetCurrentUserWishlistQuery();
-
-  const thisProductIsLiked = checkLikedProduct(wishlist, currentProduct);
+  const thisProductIsLiked = checkLikedProduct(currentUser?.wishlist, currentProduct);
 
   const [likeProduct] = productsAPI.useToggleLikeProductByIdMutation();
 
@@ -52,6 +50,11 @@ const ProductPageComponent: FC<ProductPageComponentProps> = ({ currentProduct })
     if (currentUser) {
       await likeProduct(currentProduct.id)
         .unwrap()
+        .then((user) => {
+          if (user) {
+            dispatch(updateUser(user));
+          }
+        })
         .catch((error: TErrorResponce) => {
           if (error.data) {
             toast.error(error.data.message);

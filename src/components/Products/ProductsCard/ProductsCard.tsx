@@ -8,9 +8,10 @@ import { toast } from 'react-toastify';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { checkLikedProduct } from '../../../utils/functions/checkLikedProduct';
-import { userAPI } from '../../../utils/api/services/UserService';
 import { RootState } from '../../../store/store';
 import { useAppSelector } from '../../../hooks/redux';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../store/slices/userSlice';
 
 interface ProductCardProps {
   product: TProduct;
@@ -18,18 +19,24 @@ interface ProductCardProps {
 
 const ProductsCard: FC<ProductCardProps> = ({ product }) => {
   const currentUser = useAppSelector((state: RootState) => state.userReducer.currentUser);
-  const { data: wishlist } = userAPI.useGetCurrentUserWishlistQuery();
 
-  const thisProductIsLiked = checkLikedProduct(wishlist, product);
+  const thisProductIsLiked = checkLikedProduct(currentUser?.wishlist, product);
 
   const [likeProduct] = productsAPI.useToggleLikeProductByIdMutation();
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const handleLikeProduct = async () => {
     if (currentUser) {
       await likeProduct(product.id)
         .unwrap()
+        .then((user) => {
+          if (user) {
+            dispatch(updateUser(user));
+          }
+        })
         .catch((error: TErrorResponce) => {
           if (error.data) {
             toast.error(error.data.message);
