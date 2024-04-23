@@ -74,13 +74,13 @@ const Hero = () => {
         </Container>
         <button
           onClick={prevSlide}
-          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 hidden min-[425px]:block"
+          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 hidden min-[375px]:block"
         >
           <IoIosArrowBack className="text-primary" />
         </button>
         <button
           onClick={nextSlide}
-          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 hidden min-[425px]:block"
+          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 hidden min-[375px]:block"
         >
           <IoIosArrowForward className="text-primary" />
         </button>

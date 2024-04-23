@@ -8,7 +8,7 @@ const Banner = () => {
       <Container>
         <ul className="flex flex-col items-center gap-10 lg:block">
           <li
-            data-aos="zoom-in-left"
+            data-aos="zoom-in"
             className="group max-w-80 md:max-w-96 lg:max-w-[440px] lg:relative lg:ml-[60%]"
           >
             <Link to="/catalog">
@@ -30,7 +30,7 @@ const Banner = () => {
           </li>
           <div className="flex flex-col gap-10 lg:justify-between lg:flex-row ">
             <li
-              data-aos="zoom-in-right"
+              data-aos="zoom-in"
               className="group max-w-80 md:max-w-96 lg:max-w-[440px] lg:relative lg:-mt-20"
             >
               <Link to="/catalog">
@@ -51,7 +51,7 @@ const Banner = () => {
               </Link>
             </li>
             <li
-              data-aos="zoom-in-left"
+              data-aos="zoom-in"
               className="group max-w-80 md:max-w-96 lg:max-w-[440px] lg:relative lg:mt-24"
             >
               <Link to="/catalog">
