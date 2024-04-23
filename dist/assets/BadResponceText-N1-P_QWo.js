@@ -1,0 +1,1 @@
+import{j as e}from"./index-NFrXaa-t.js";const t=()=>e.jsxs("div",{className:"py-40 lg:py-0 px-5 text-center text-2xl m-auto flex flex-col items-center gap-2 ",children:[e.jsx("span",{children:"К сожалению, не удалось загрузить страницу!"}),e.jsx("span",{children:"Пожалуйста, повторите попытку позже."})]});export{t as B};
