@@ -14,7 +14,7 @@ const BlogPostList: FC<BlogPostListProps> = ({ posts }) => {
   return (
     <section>
       <Container>
-        <ul className="flex flex-wrap justify-center gap-5 pt-24 pb-14">
+        <ul className="flex flex-wrap justify-center gap-5 pt-14 lg:pt-20 pb-14">
           {posts.map((post) => (
             <BlogPost key={post.id} post={post} />
           ))}

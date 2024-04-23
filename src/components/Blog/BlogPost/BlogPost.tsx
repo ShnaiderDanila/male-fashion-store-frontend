@@ -11,7 +11,7 @@ interface BlogPostProps {
 const BlogPost: FC<BlogPostProps> = ({ post }) => {
   return (
     <Link to={`/blog/${post.id}`} className="group">
-      <li className="max-w-[360px] min-h-96 relative flex justify-center">
+      <li className="max-w-[360px] h-96 relative flex flex-col justify-center">
         <div>
           <img
             src={`${import.meta.env.VITE_REACT_API_URL}/${post.image}`}
@@ -19,7 +19,7 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
             className="w-full object-cover object-center"
           />
         </div>
-        <div className="bg-white gap-3 max-w-72 p-5 absolute bottom-6 md:p-7 ">
+        <div className="bg-white gap-3 -mt-10 max-w-[288px] mx-auto p-5 md:p-7 ">
           <span className="flex gap-2 items-center mb-3">
             <LuCalendarSearch />
             {formatCreationDate(post.createdAt)}
