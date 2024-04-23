@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { formatCost } from '../../../utils/functions/formatCost';
 import { TProduct } from '../../../types/entities/product-entity';
 import { productsAPI } from '../../../utils/api/services/ProductsService';
@@ -25,7 +25,7 @@ const ProductsCard: FC<ProductCardProps> = ({ product }) => {
   const [likeProduct] = productsAPI.useToggleLikeProductByIdMutation();
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const handleLikeProduct = async () => {
@@ -51,7 +51,13 @@ const ProductsCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article className="w-full flex flex-col relative group overflow-hidden">
-      <div className="hidden lg:flex flex-col gap-2 items-center absolute z-10 -mr-16 right-5 top-5 transition-all duration-500 group-hover:mr-0">
+      <div
+        className={`${
+          location.pathname.includes('catalog')
+            ? 'hidden lg:flex flex-col gap-2 items-center absolute z-10 -mr-16 right-5 top-5 transition-all duration-500 group-hover:mr-0'
+            : 'flex flex-col gap-2 items-center absolute z-10 right-5 top-5'
+        }`}
+      >
         <button
           className="bg-white w-9 h-9 flex items-center justify-center text-xl"
           onClick={handleLikeProduct}
@@ -65,7 +71,7 @@ const ProductsCard: FC<ProductCardProps> = ({ product }) => {
       </div>
 
       <Link to={`/catalog/${product.id}`} className="relative cursor-pointer">
-        <div className="absolute top-0 left-0 bg-black z-2 w-full h-full transition-all duration-300 opacity-0 group-hover:opacity-10"></div>
+        <div className="absolute top-0 left-0 bg-black z-2 w-full h-full transition-all duration-300 opacity-0 lg:group-hover:opacity-10"></div>
         <img
           className="w-full h-full object-cover object-center"
           src={`${import.meta.env.VITE_REACT_API_URL}/${product.image}`}

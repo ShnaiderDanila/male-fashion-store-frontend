@@ -74,18 +74,18 @@ const Hero = () => {
         </Container>
         <button
           onClick={prevSlide}
-          className="text-4xl lg:hover:opacity-70 p-2 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 hidden sm:block"
+          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 hidden min-[425px]:block"
         >
           <IoIosArrowBack className="text-primary" />
         </button>
         <button
           onClick={nextSlide}
-          className="text-4xl lg:hover:opacity-70 p-3 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 hidden sm:block"
+          className="text-4xl lg:hover:opacity-70 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 hidden min-[425px]:block"
         >
           <IoIosArrowForward className="text-primary" />
         </button>
         <div className="absolute bottom-10 right-0 left-0 ">
-          <div className="items-center justify-center gap-2 hidden sm:flex ">
+          <div className="items-center justify-center gap-2 flex">
             {slides.map((_, slideIndex) => (
               <div
                 key={slideIndex}
