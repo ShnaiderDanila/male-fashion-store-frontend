@@ -1,8 +1,5 @@
 # [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&random=false&width=500&lines=Male-Fashion+(Front-end))](https://git.io/typing-svg)
 
-![Swagger UI - Google Chrome 2024-04-27 00-57-29](https://github.com/ShnaiderDanila/male-fashion-store-frontend/assets/116545792/f162cc23-50c0-423a-8c77-a211be8aa750)
-
-![IMG_6604](https://github.com/ShnaiderDanila/male-fashion-store-frontend/assets/116545792/7d62c77e-9c25-4e7c-ba79-c27d61057d41)
 
 ## Описание проекта
 **Male-Fashion** - интернет-магазин мужской одежды (e-commerce). Отзывчиво-адаптивное Full-Stack приложение.
