@@ -45,7 +45,7 @@
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-(Zod, RTK Query, Axios, React Toastify, React Icons, React Google Autocomplete, Tailwind Scrollbar, AOS)
+* (Zod, RTK Query, Axios, React Toastify, React Icons, React Google Autocomplete, Tailwind Scrollbar, AOS)
 
 ## 🚀 Запуск проекта (Front-end):
 
