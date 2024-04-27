@@ -1,4 +1,4 @@
-                                       [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&center=true&random=false&width=500&lines=Male-Fashion+(Frontend))](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&center=true&random=false&width=500&lines=Male-Fashion+(Frontend))](https://git.io/typing-svg)
 
 ![Screenshot_3](https://github.com/ShnaiderDanila/male-fashion-store-frontend/assets/116545792/607f6d50-9467-42f5-88b1-081a8a6441eb)
 
