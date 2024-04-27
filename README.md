@@ -35,6 +35,7 @@
 * Подключен SSL сертификат (certbot)
 
 ## Используемые технологии (Front-end):
+* Основные:
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
@@ -45,7 +46,9 @@
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-* (Zod, RTK Query, Axios, React Toastify, React Icons, React Google Autocomplete, Tailwind Scrollbar, AOS)
+
+* Дополнительные:
+(Zod, RTK Query, Axios, React Toastify, React Icons, React Google Autocomplete, Tailwind Scrollbar, AOS)
 
 ## 🚀 Запуск проекта (Front-end):
 
