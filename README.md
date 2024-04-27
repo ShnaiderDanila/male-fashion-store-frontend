@@ -1,4 +1,5 @@
 # [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&random=false&width=500&lines=Male-Fashion+(Front-end))](https://git.io/typing-svg)
+![Screenshot_2](https://github.com/ShnaiderDanila/male-fashion-store-frontend/assets/116545792/54bf5df6-1ac9-47d2-a8da-996ce6139363) ![photo_2024-04-27_21-42-52](https://github.com/ShnaiderDanila/male-fashion-store-frontend/assets/116545792/2c0ebaf3-653e-41f9-ba99-4c610b23c03c)
 
 
 ## Описание проекта
