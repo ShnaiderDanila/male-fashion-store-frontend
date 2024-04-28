@@ -68,6 +68,7 @@ npm run dev
 #### Запустить приложение в PROD MODE:
 ```
 npm run build
+
 npm run preview
 ```
 
